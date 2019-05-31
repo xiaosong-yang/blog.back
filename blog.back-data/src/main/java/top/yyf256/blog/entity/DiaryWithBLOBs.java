@@ -1,0 +1,81 @@
+package top.yyf256.blog.entity;
+
+import java.io.Serializable;
+
+public class DiaryWithBLOBs extends Diary implements Serializable {
+    private String faceUrl;
+
+    private String content;
+
+    private static final long serialVersionUID = 1L;
+
+    public String getFaceUrl() {
+        return faceUrl;
+    }
+
+    public void setFaceUrl(String faceUrl) {
+        this.faceUrl = faceUrl == null ? null : faceUrl.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        DiaryWithBLOBs other = (DiaryWithBLOBs) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getOverview() == null ? other.getOverview() == null : this.getOverview().equals(other.getOverview()))
+            && (this.getTime() == null ? other.getTime() == null : this.getTime().equals(other.getTime()))
+            && (this.getPraiseCount() == null ? other.getPraiseCount() == null : this.getPraiseCount().equals(other.getPraiseCount()))
+            && (this.getBrowseCount() == null ? other.getBrowseCount() == null : this.getBrowseCount().equals(other.getBrowseCount()))
+            && (this.getCommentCount() == null ? other.getCommentCount() == null : this.getCommentCount().equals(other.getCommentCount()))
+            && (this.getFaceUrl() == null ? other.getFaceUrl() == null : this.getFaceUrl().equals(other.getFaceUrl()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getOverview() == null) ? 0 : getOverview().hashCode());
+        result = prime * result + ((getTime() == null) ? 0 : getTime().hashCode());
+        result = prime * result + ((getPraiseCount() == null) ? 0 : getPraiseCount().hashCode());
+        result = prime * result + ((getBrowseCount() == null) ? 0 : getBrowseCount().hashCode());
+        result = prime * result + ((getCommentCount() == null) ? 0 : getCommentCount().hashCode());
+        result = prime * result + ((getFaceUrl() == null) ? 0 : getFaceUrl().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", faceUrl=").append(faceUrl);
+        sb.append(", content=").append(content);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
+}

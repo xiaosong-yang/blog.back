@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.UserInfo" >
+    <id column="version_id" property="versionId" jdbcType="INTEGER" />
+    <result column="tips" property="tips" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="photo_url" property="photoUrl" jdbcType="VARCHAR" />
+    <result column="qq_url" property="qqUrl" jdbcType="VARCHAR" />
+    <result column="wechat_url" property="wechatUrl" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    version_id, tips, logo_url, photo_url, qq_url, wechat_url, email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where version_id = #{versionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where version_id = #{versionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.yyf256.blog.entity.UserInfo" >
+    insert into user_info (version_id, tips, logo_url, 
+      photo_url, qq_url, wechat_url, 
+      email)
+    values (#{versionId,jdbcType=INTEGER}, #{tips,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, 
+      #{photoUrl,jdbcType=VARCHAR}, #{qqUrl,jdbcType=VARCHAR}, #{wechatUrl,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.yyf256.blog.entity.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="versionId != null" >
+        version_id,
+      </if>
+      <if test="tips != null" >
+        tips,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="photoUrl != null" >
+        photo_url,
+      </if>
+      <if test="qqUrl != null" >
+        qq_url,
+      </if>
+      <if test="wechatUrl != null" >
+        wechat_url,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="versionId != null" >
+        #{versionId,jdbcType=INTEGER},
+      </if>
+      <if test="tips != null" >
+        #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photoUrl != null" >
+        #{photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="qqUrl != null" >
+        #{qqUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUrl != null" >
+        #{wechatUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.yyf256.blog.entity.UserInfo" >
+    update user_info
+    <set >
+      <if test="tips != null" >
+        tips = #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photoUrl != null" >
+        photo_url = #{photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="qqUrl != null" >
+        qq_url = #{qqUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatUrl != null" >
+        wechat_url = #{wechatUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where version_id = #{versionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.yyf256.blog.entity.UserInfo" >
+    update user_info
+    set tips = #{tips,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      photo_url = #{photoUrl,jdbcType=VARCHAR},
+      qq_url = #{qqUrl,jdbcType=VARCHAR},
+      wechat_url = #{wechatUrl,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR}
+    where version_id = #{versionId,jdbcType=INTEGER}
+  </update>
+</mapper>

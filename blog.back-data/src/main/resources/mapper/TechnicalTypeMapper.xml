@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.dao.TechnicalTypeMapper" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.TechnicalType" >
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="now_count" property="nowCount" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="top.yyf256.blog.entity.TechnicalType" extends="BaseResultMap" >
+    <result column="img_url" property="imgUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    name, now_count, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    img_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from technical_type
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from technical_type
+    where name = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="top.yyf256.blog.entity.TechnicalType" >
+    insert into technical_type (name, now_count, create_time, 
+      img_url)
+    values (#{name,jdbcType=VARCHAR}, #{nowCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.yyf256.blog.entity.TechnicalType" >
+    insert into technical_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nowCount != null" >
+        now_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nowCount != null" >
+        #{nowCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.yyf256.blog.entity.TechnicalType" >
+    update technical_type
+    <set >
+      <if test="nowCount != null" >
+        now_count = #{nowCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.yyf256.blog.entity.TechnicalType" >
+    update technical_type
+    set now_count = #{nowCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=LONGVARCHAR}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.yyf256.blog.entity.TechnicalType" >
+    update technical_type
+    set now_count = #{nowCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

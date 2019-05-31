@@ -1,0 +1,31 @@
+server:
+    port: 8082
+    servlet:
+        context-path: /blogback
+spring:
+    resources: 
+        static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/, file:${spring.http.multipart.location}
+    freemarker:
+        allow-request-override: false
+        cache: true
+        charset: UTF-8
+        content-type: text/html
+        expose-request-attributes: false
+        expose-session-attributes: false
+        expose-spring-macro-helpers: false
+        suffix: .ftl
+        template-loader-path: classpath:/templates
+    profiles:
+        active: product
+
+
+mybatis:
+    mapper-locations: classpath:mapper/*.xml,repository/*.xml
+#    type-aliases-package: top.yyf256.demo.entity,top.yyf256.demo.model
+    configuration: 
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+    config: classpath:log4j2.xml
+
+system:
+    name: 小松博客管理系统

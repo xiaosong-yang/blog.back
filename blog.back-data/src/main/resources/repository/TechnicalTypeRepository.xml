@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.repository.TechnicalTypeRepository" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.TechnicalType" >
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="now_count" property="nowCount" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="top.yyf256.blog.entity.TechnicalType" extends="BaseResultMap" >
+    <result column="img_url" property="imgUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    name, now_count, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    img_url
+  </sql>
+  <select id="getAllTechnicalTypes" resultType="java.lang.String">
+    select name from technical_type
+  </select>
+</mapper>

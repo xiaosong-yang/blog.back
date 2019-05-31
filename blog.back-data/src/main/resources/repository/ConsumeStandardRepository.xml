@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.repository.ConsumeStandardRepository" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.ConsumeStandard" >
+    <id column="time_id" property="timeId" jdbcType="VARCHAR" />
+    <result column="comsume_1" property="comsume1" jdbcType="REAL" />
+    <result column="comsume_2" property="comsume2" jdbcType="REAL" />
+    <result column="comsume_3" property="comsume3" jdbcType="REAL" />
+    <result column="comsume_4" property="comsume4" jdbcType="REAL" />
+    <result column="comsume_5" property="comsume5" jdbcType="REAL" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    time_id, comsume_1, comsume_2, comsume_3, comsume_4, comsume_5, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from consume_standard
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from consume_standard
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="top.yyf256.blog.entity.ConsumeStandard" >
+    insert into consume_standard (time_id, comsume_1, comsume_2, 
+      comsume_3, comsume_4, comsume_5, 
+      update_time)
+    values (#{timeId,jdbcType=VARCHAR}, #{comsume1,jdbcType=REAL}, #{comsume2,jdbcType=REAL}, 
+      #{comsume3,jdbcType=REAL}, #{comsume4,jdbcType=REAL}, #{comsume5,jdbcType=REAL}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="top.yyf256.blog.entity.ConsumeStandard" >
+    insert into consume_standard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timeId != null" >
+        time_id,
+      </if>
+      <if test="comsume1 != null" >
+        comsume_1,
+      </if>
+      <if test="comsume2 != null" >
+        comsume_2,
+      </if>
+      <if test="comsume3 != null" >
+        comsume_3,
+      </if>
+      <if test="comsume4 != null" >
+        comsume_4,
+      </if>
+      <if test="comsume5 != null" >
+        comsume_5,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timeId != null" >
+        #{timeId,jdbcType=VARCHAR},
+      </if>
+      <if test="comsume1 != null" >
+        #{comsume1,jdbcType=REAL},
+      </if>
+      <if test="comsume2 != null" >
+        #{comsume2,jdbcType=REAL},
+      </if>
+      <if test="comsume3 != null" >
+        #{comsume3,jdbcType=REAL},
+      </if>
+      <if test="comsume4 != null" >
+        #{comsume4,jdbcType=REAL},
+      </if>
+      <if test="comsume5 != null" >
+        #{comsume5,jdbcType=REAL},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.yyf256.blog.entity.ConsumeStandard" >
+    update consume_standard
+    <set >
+      <if test="comsume1 != null" >
+        comsume_1 = #{comsume1,jdbcType=REAL},
+      </if>
+      <if test="comsume2 != null" >
+        comsume_2 = #{comsume2,jdbcType=REAL},
+      </if>
+      <if test="comsume3 != null" >
+        comsume_3 = #{comsume3,jdbcType=REAL},
+      </if>
+      <if test="comsume4 != null" >
+        comsume_4 = #{comsume4,jdbcType=REAL},
+      </if>
+      <if test="comsume5 != null" >
+        comsume_5 = #{comsume5,jdbcType=REAL},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.yyf256.blog.entity.ConsumeStandard" >
+    update consume_standard
+    set comsume_1 = #{comsume1,jdbcType=REAL},
+      comsume_2 = #{comsume2,jdbcType=REAL},
+      comsume_3 = #{comsume3,jdbcType=REAL},
+      comsume_4 = #{comsume4,jdbcType=REAL},
+      comsume_5 = #{comsume5,jdbcType=REAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.dao.ConsumeLogMapper" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.ConsumeLog" >
+    <id column="time_id" property="timeId" jdbcType="VARCHAR" />
+    <result column="consume_1" property="consume1" jdbcType="REAL" />
+    <result column="consume_2" property="consume2" jdbcType="REAL" />
+    <result column="consume_3" property="consume3" jdbcType="REAL" />
+    <result column="consume_4" property="consume4" jdbcType="REAL" />
+    <result column="consume_5" property="consume5" jdbcType="REAL" />
+    <result column="consume_6" property="consume6" jdbcType="REAL" />
+    <result column="month_id" property="monthId" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    time_id, consume_1, consume_2, consume_3, consume_4, consume_5, consume_6, month_id, 
+    time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from consume_log
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from consume_log
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="top.yyf256.blog.entity.ConsumeLog" >
+    insert into consume_log (time_id, consume_1, consume_2, 
+      consume_3, consume_4, consume_5, 
+      consume_6, month_id, time)
+    values (#{timeId,jdbcType=VARCHAR}, #{consume1,jdbcType=REAL}, #{consume2,jdbcType=REAL}, 
+      #{consume3,jdbcType=REAL}, #{consume4,jdbcType=REAL}, #{consume5,jdbcType=REAL}, 
+      #{consume6,jdbcType=REAL}, #{monthId,jdbcType=VARCHAR}, #{time,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="top.yyf256.blog.entity.ConsumeLog" >
+    insert into consume_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timeId != null" >
+        time_id,
+      </if>
+      <if test="consume1 != null" >
+        consume_1,
+      </if>
+      <if test="consume2 != null" >
+        consume_2,
+      </if>
+      <if test="consume3 != null" >
+        consume_3,
+      </if>
+      <if test="consume4 != null" >
+        consume_4,
+      </if>
+      <if test="consume5 != null" >
+        consume_5,
+      </if>
+      <if test="consume6 != null" >
+        consume_6,
+      </if>
+      <if test="monthId != null" >
+        month_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timeId != null" >
+        #{timeId,jdbcType=VARCHAR},
+      </if>
+      <if test="consume1 != null" >
+        #{consume1,jdbcType=REAL},
+      </if>
+      <if test="consume2 != null" >
+        #{consume2,jdbcType=REAL},
+      </if>
+      <if test="consume3 != null" >
+        #{consume3,jdbcType=REAL},
+      </if>
+      <if test="consume4 != null" >
+        #{consume4,jdbcType=REAL},
+      </if>
+      <if test="consume5 != null" >
+        #{consume5,jdbcType=REAL},
+      </if>
+      <if test="consume6 != null" >
+        #{consume6,jdbcType=REAL},
+      </if>
+      <if test="monthId != null" >
+        #{monthId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.yyf256.blog.entity.ConsumeLog" >
+    update consume_log
+    <set >
+      <if test="consume1 != null" >
+        consume_1 = #{consume1,jdbcType=REAL},
+      </if>
+      <if test="consume2 != null" >
+        consume_2 = #{consume2,jdbcType=REAL},
+      </if>
+      <if test="consume3 != null" >
+        consume_3 = #{consume3,jdbcType=REAL},
+      </if>
+      <if test="consume4 != null" >
+        consume_4 = #{consume4,jdbcType=REAL},
+      </if>
+      <if test="consume5 != null" >
+        consume_5 = #{consume5,jdbcType=REAL},
+      </if>
+      <if test="consume6 != null" >
+        consume_6 = #{consume6,jdbcType=REAL},
+      </if>
+      <if test="monthId != null" >
+        month_id = #{monthId,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+    </set>
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.yyf256.blog.entity.ConsumeLog" >
+    update consume_log
+    set consume_1 = #{consume1,jdbcType=REAL},
+      consume_2 = #{consume2,jdbcType=REAL},
+      consume_3 = #{consume3,jdbcType=REAL},
+      consume_4 = #{consume4,jdbcType=REAL},
+      consume_5 = #{consume5,jdbcType=REAL},
+      consume_6 = #{consume6,jdbcType=REAL},
+      month_id = #{monthId,jdbcType=VARCHAR},
+      time = #{time,jdbcType=DATE}
+    where time_id = #{timeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

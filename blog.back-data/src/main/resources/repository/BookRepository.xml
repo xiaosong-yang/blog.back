@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.repository.BookRepository" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.Book" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="upload_time" property="uploadTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="top.yyf256.blog.entity.BookWithBLOBs" extends="BaseResultMap" >
+    <result column="face_url" property="faceUrl" jdbcType="LONGVARCHAR" />
+    <result column="instruction" property="instruction" jdbcType="LONGVARCHAR" />
+    <result column="download_url" property="downloadUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, book_name, author, upload_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    face_url, instruction, download_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="top.yyf256.blog.entity.BookWithBLOBs" >
+    insert into book (id, book_name, author, 
+      upload_time, face_url, instruction, 
+      download_url)
+    values (#{id,jdbcType=INTEGER}, #{bookName,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{faceUrl,jdbcType=LONGVARCHAR}, #{instruction,jdbcType=LONGVARCHAR}, 
+      #{downloadUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="top.yyf256.blog.entity.BookWithBLOBs" >
+    insert into book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bookName != null" >
+        book_name,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="faceUrl != null" >
+        face_url,
+      </if>
+      <if test="instruction != null" >
+        instruction,
+      </if>
+      <if test="downloadUrl != null" >
+        download_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bookName != null" >
+        #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="faceUrl != null" >
+        #{faceUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="instruction != null" >
+        #{instruction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downloadUrl != null" >
+        #{downloadUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.yyf256.blog.entity.BookWithBLOBs" >
+    update book
+    <set >
+      <if test="bookName != null" >
+        book_name = #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="faceUrl != null" >
+        face_url = #{faceUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="instruction != null" >
+        instruction = #{instruction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downloadUrl != null" >
+        download_url = #{downloadUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="top.yyf256.blog.entity.BookWithBLOBs" >
+    update book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      face_url = #{faceUrl,jdbcType=LONGVARCHAR},
+      instruction = #{instruction,jdbcType=LONGVARCHAR},
+      download_url = #{downloadUrl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.yyf256.blog.entity.Book" >
+    update book
+    set book_name = #{bookName,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

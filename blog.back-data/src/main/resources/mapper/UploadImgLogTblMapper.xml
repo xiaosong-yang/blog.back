@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.dao.UploadImgLogTblMapper" >
+  <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.UploadImgLogTbl" >
+    <id column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="upload_date" property="uploadDate" jdbcType="CHAR" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    img_url, upload_date, state, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from upload_img_log_tbl
+    where img_url = #{imgUrl,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from upload_img_log_tbl
+    where img_url = #{imgUrl,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="top.yyf256.blog.entity.UploadImgLogTbl" >
+    insert into upload_img_log_tbl (img_url, upload_date, state, 
+      create_time)
+    values (#{imgUrl,jdbcType=VARCHAR}, #{uploadDate,jdbcType=CHAR}, #{state,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="top.yyf256.blog.entity.UploadImgLogTbl" >
+    insert into upload_img_log_tbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="uploadDate != null" >
+        upload_date,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        #{uploadDate,jdbcType=CHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.yyf256.blog.entity.UploadImgLogTbl" >
+    update upload_img_log_tbl
+    <set >
+      <if test="uploadDate != null" >
+        upload_date = #{uploadDate,jdbcType=CHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where img_url = #{imgUrl,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.yyf256.blog.entity.UploadImgLogTbl" >
+    update upload_img_log_tbl
+    set upload_date = #{uploadDate,jdbcType=CHAR},
+      state = #{state,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where img_url = #{imgUrl,jdbcType=VARCHAR}
+  </update>
+</mapper>

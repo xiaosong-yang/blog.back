@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    #        driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://www.yyf256.top:3306/yyf256.blog?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: xiaosong

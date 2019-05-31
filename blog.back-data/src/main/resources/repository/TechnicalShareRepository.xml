@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.yyf256.blog.repository.TechnicalShareRepository">
+    <resultMap id="BaseResultMap" type="top.yyf256.blog.entity.TechnicalShare">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="overview" property="overview" jdbcType="VARCHAR"/>
+        <result column="praise_count" property="praiseCount" jdbcType="INTEGER"/>
+        <result column="comment_count" property="commentCount" jdbcType="INTEGER"/>
+        <result column="browse_count" property="browseCount" jdbcType="INTEGER"/>
+        <result column="time" property="time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="top.yyf256.blog.entity.TechnicalShareWithBLOBs" extends="BaseResultMap">
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="face_url" property="faceUrl" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, title, type, overview, praise_count, comment_count, browse_count, time
+  </sql>
+    <sql id="Blob_Column_List">
+    content, face_url
+  </sql>
+
+    <select id="selTechnicalList" resultMap="BaseResultMap"
+            parameterType="top.yyf256.blog.model.QueryTechnicalListParams">
+        select
+        <include refid="Base_Column_List"/>
+        from technical_share
+        where 0=0
+        <if test='title!=null and title!=""'>and title like concat("%",#{title},"%")</if>
+        <if test='type!=null and type!=""'>and type = #{type}</if>
+        order by time desc limit #{begin},#{count}
+    </select>
+
+    <select id="selTechnicalCount" resultType="java.lang.Integer"
+            parameterType="top.yyf256.blog.model.QueryTechnicalListParams">
+        select
+        count(1)
+        from technical_share
+        where 0=0
+        <if test='title!=null and title!=""'>and title like concat("%",#{title},"%")</if>
+        <if test='type!=null and type!=""'>and type = #{type}</if>
+    </select>
+
+</mapper>

@@ -1,0 +1,6 @@
+constant模块只负责项目的常量
+constant包下放置静态常量
+enums包下放置枚举类型常量
+项目中用到的常量都要在constant进行定义然后使用，便于项目的后期维护
+禁止在项目中随意使用未在constant中定义的常量eg：System.out.println("系统异常");
+系统异常必须在constant模块下定义，否则后期修改"系统异常"该字符串会很麻烦
