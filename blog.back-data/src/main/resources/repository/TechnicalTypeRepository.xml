@@ -18,4 +18,15 @@
   <select id="getAllTechnicalTypes" resultType="java.lang.String">
     select name from technical_type
   </select>
+
+  <select id="getTechnicalCount" resultType="java.lang.Integer">
+    select count(1) from technical_type
+    where 0=0
+    <if test='technicalType!=null and technicalType!=""'>and name like concat('%',#{technicalType},'%')</if>
+  </select>
+  <select id="getByParams" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+    select * from technical_type
+    where 0=0
+    <if test='technicalType!=null and technicalType!=""'>and name like concat('%',#{technicalType},'%')</if>
+  </select>
 </mapper>

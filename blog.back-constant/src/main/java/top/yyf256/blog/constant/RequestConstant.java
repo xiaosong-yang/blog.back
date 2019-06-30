@@ -13,4 +13,9 @@ public class RequestConstant {
 
     public static final String CONTENT = "content";
 
+    public static final String CUR = "cur";
+
+    public static final String SIZE = "size";
+
+
 }

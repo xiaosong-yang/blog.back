@@ -137,6 +137,7 @@
             "success":function(rsp){
                 if (rsp.rspCode == "SY_RS_1000") {
                     show_warn_dialog(rsp.rspMsg)
+                    $("#technicalId").val(rsp.id);
                 }else{
                     show_warn_dialog(rsp.rspMsg)
                 }

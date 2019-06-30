@@ -45,6 +45,9 @@
   </insert>
   <insert id="insertSelective" parameterType="top.yyf256.blog.entity.TechnicalShareWithBLOBs" >
     insert into technical_share
+    <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+      select LAST_INSERT_ID() as id
+    </selectKey>
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,

@@ -1,5 +1,5 @@
 server:
-    port: 8082
+    port: 8083
     servlet:
         context-path: /blogback
 spring:
@@ -16,7 +16,7 @@ spring:
         suffix: .ftl
         template-loader-path: classpath:/templates
     profiles:
-        active: product
+        active: dev
 
 
 mybatis:

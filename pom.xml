@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>top.yyf256</groupId>
@@ -61,7 +62,6 @@
             </dependency>
 
 
-
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>happy-dns-java</artifactId>
@@ -96,6 +96,19 @@
             </dependency>
 
 
+            <!-- 图片缩略图 -->
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>0.4.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>4.1.6</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <properties>
@@ -105,11 +118,11 @@
         <log4j2.version>2.6.2</log4j2.version>
     </properties>
 
-  <modules>
-    <module>blog.back-data</module>
-    <module>blog.back-util</module>
-    <module>blog.back-service</module>
-    <module>blog.back-web</module>
-    <module>blog.back-constant</module>
-  </modules>
+    <modules>
+        <module>blog.back-data</module>
+        <module>blog.back-util</module>
+        <module>blog.back-service</module>
+        <module>blog.back-web</module>
+        <module>blog.back-constant</module>
+    </modules>
 </project>

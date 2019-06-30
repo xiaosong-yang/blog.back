@@ -3,6 +3,7 @@ package top.yyf256.blog.enums;
 public enum  FileType {
 
     TECHNICAL_SHARE_IMG("000","技术分享图片"),
+    TECHNICAL_TYPE_IMG("001","技术分类图片"),
     ;
     private String code;
     private String desc;

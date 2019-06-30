@@ -8,4 +8,5 @@ public interface ResponseConstant {
     String TECHNICAL_TYPE = "technicalType";
     String RSP_CODE = "rspCode";
     String RSP_MSG = "rspMsg";
+    String IMG_URL = "imgUrl";
 }

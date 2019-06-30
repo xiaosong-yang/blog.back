@@ -15,7 +15,6 @@ import top.yyf256.blog.service.technical.domain.AllTechnicalTypeBO;
 import top.yyf256.blog.service.technical.domain.TechnicalDetailBO;
 import top.yyf256.blog.util.ParamsValidUtil;
 import top.yyf256.blog.util.customException.SystemException;
-import top.yyf256.blog.web.security.SecurityInterceptor;
 import top.yyf256.security.annotation.JanusAuth;
 import top.yyf256.security.enums.BackType;
 import top.yyf256.util.string.StringUtil;
@@ -24,10 +23,6 @@ import top.yyf256.util.string.StringUtil;
 @Controller
 @RequestMapping("/technical")
 public class TechnicalController {
-
-
-    @Autowired
-    private SecurityInterceptor securityInterceptor;
 
     @Autowired
     private TechnicalService technicalService;

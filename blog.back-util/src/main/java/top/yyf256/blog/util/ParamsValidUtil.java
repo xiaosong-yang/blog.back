@@ -23,6 +23,23 @@ public class ParamsValidUtil {
     }
 
     /**
+     * 是否为大于0的整数
+     * @param str
+     * @return
+     */
+    public static boolean isOverZeroInt(String str) {
+        try {
+            Integer number = Integer.parseInt(str);
+            if (number > 0) {
+                return true;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return false;
+    }
+
+    /**
      * 去除字符串最后一位
      *
      * @param str
@@ -34,12 +51,13 @@ public class ParamsValidUtil {
 
     /**
      * 不为空并且小于最大值
+     *
      * @param source
      * @param max
      * @return
      */
-    public static boolean notNullAndLessThanMaxLength(String source,int max){
-        if(!StringUtil.stringIsBlank(source) && source.length()<=max){
+    public static boolean notNullAndLessThanMaxLength(String source, int max) {
+        if (!StringUtil.stringIsBlank(source) && source.length() <= max) {
             return true;
         }
         return false;
@@ -47,15 +65,16 @@ public class ParamsValidUtil {
 
     /**
      * 为空或者小于最大值
+     *
      * @param source
      * @param max
      * @return
      */
-    public static boolean nullOrLessThanMaxLength(String source,int max){
-        if(StringUtil.stringIsBlank(source)){
+    public static boolean nullOrLessThanMaxLength(String source, int max) {
+        if (StringUtil.stringIsBlank(source)) {
             return true;
         }
-        if(source.length()<=max){
+        if (source.length() <= max) {
             return true;
         }
         return false;

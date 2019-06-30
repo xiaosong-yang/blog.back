@@ -78,7 +78,7 @@ public class TechnicalServiceImpl implements TechnicalService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED,timeout = 30)
+    @Transactional(propagation = Propagation.REQUIRED, timeout = 30)
     public AddTechnicalDiaryBO addTechnicalDiary(AddTechnicalDiaryBO bo) {
         addTechnicalBaseCheck(bo);
         Document document = Jsoup.parse(bo.getContent());
@@ -103,20 +103,21 @@ public class TechnicalServiceImpl implements TechnicalService {
                 technicalShare.setPraiseCount(0);
                 technicalShare.setCommentCount(0);
                 technicalShare.setTime(new Date());
-                technicalShareMapper.insertSelective(technicalShare);
+                int id = technicalShareMapper.insertSelective(technicalShare);
+                bo.setId(id + SystemConstant.EMPTY);
             } else {
                 technicalShare.setId(Integer.parseInt(bo.getId()));
                 technicalShareMapper.updateByPrimaryKeySelective(technicalShare);
             }
 
             //将之前的内容之后的图片给置位为失效
-            if(bo.getOldContent()!=null){
+            if (bo.getOldContent() != null) {
                 Pattern pattern = Pattern.compile(IMG_REGEX);
                 Matcher matcher = pattern.matcher(bo.getOldContent());
                 while (matcher.find()) {
                     String str = matcher.group();
                     str = str.substring(0, str.length() - 1);
-                    updateUploadImgLogTbl(str,ImgState.DROP);
+                    updateUploadImgLogTbl(str, ImgState.DROP);
                 }
             }
 
@@ -127,7 +128,7 @@ public class TechnicalServiceImpl implements TechnicalService {
             while (matcher.find()) {
                 String str = matcher.group();
                 str = str.substring(0, str.length() - 1);
-                updateUploadImgLogTbl(str,ImgState.USED);
+                updateUploadImgLogTbl(str, ImgState.USED);
             }
         } else {
             logger.info("解析技术分享日志内容异常，日志内容如下" + bo.getContent());
@@ -138,6 +139,7 @@ public class TechnicalServiceImpl implements TechnicalService {
 
     /**
      * 查询技术日志列表
+     *
      * @param bo
      * @return
      */
@@ -148,9 +150,9 @@ public class TechnicalServiceImpl implements TechnicalService {
         queryTechnicalListParams.setTitle(bo.getTitle());
         int cur = Integer.parseInt(bo.getCur());
         int size = Integer.parseInt(bo.getSize());
-        int begin = (cur-1)*size;
-        if(begin<0){
-            begin=0;
+        int begin = (cur - 1) * size;
+        if (begin < 0) {
+            begin = 0;
         }
         queryTechnicalListParams.setBegin(begin);
         queryTechnicalListParams.setCount(size);
@@ -172,9 +174,9 @@ public class TechnicalServiceImpl implements TechnicalService {
         queryTechnicalListParams.setTitle(bo.getTitle());
         queryTechnicalListParams.setType(bo.getType());
         Integer totalCount = technicalShareRepository.selTechnicalCount(queryTechnicalListParams);
-        if(totalCount!=null){
-            bo.setTotalCount(totalCount+SystemConstant.EMPTY);
-        }else{
+        if (totalCount != null) {
+            bo.setTotalCount(totalCount + SystemConstant.EMPTY);
+        } else {
             bo.setTotalCount(SystemConstant.ZERO);
         }
 
@@ -206,10 +208,11 @@ public class TechnicalServiceImpl implements TechnicalService {
 
     /**
      * 更新图片上传
+     *
      * @param url
      * @param imgState
      */
-    private void updateUploadImgLogTbl(String url,ImgState imgState){
+    private void updateUploadImgLogTbl(String url, ImgState imgState) {
         UploadImgLogTbl uploadImgLogTbl = new UploadImgLogTbl();
         uploadImgLogTbl.setImgUrl(url);
         uploadImgLogTbl.setState(imgState.getCode());

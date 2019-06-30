@@ -52,7 +52,12 @@
                 class="icon fa fa-circle-o"></i>技术分享新增</a></li>
             <li><a class="treeview-item" id="s_menu2_f3" href="${Application.projectName}/technical/technicalList"><i
                 class="icon fa fa-circle-o"></i>技术分享管理</a></li>
+            <li><a class="treeview-item" id="s_menu3_f3" href="${Application.projectName}/technicalType/edit"><i
+                        class="icon fa fa-circle-o"></i>技术种类新增</a></li>
+            <li><a class="treeview-item" id="s_menu4_f3" href="${Application.projectName}/technicalType/technicalTypeList"><i
+                class="icon fa fa-circle-o"></i>技术种类管理</a></li>
             </ul>
+
             </li>
         </@janusAuthCheck>
 

@@ -1,5 +1,7 @@
 package top.yyf256.blog.service.upload.impl;
 
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.ibatis.javassist.bytecode.ByteArray;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import top.yyf256.blog.service.upload.domain.UploadBO;
 import top.yyf256.blog.util.QiNiuUtil;
 import top.yyf256.blog.util.time.DateUtil;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 
 @Service
@@ -33,6 +35,13 @@ public class UploadServiceImpl implements UploadService {
 
             if(FileType.TECHNICAL_SHARE_IMG.getCode().equals(bo.getType())){
                 String url  = QiNiuUtil.uploadImg(fileBytes,"technical");
+                bo.setReturnUrl(url);
+            }
+            if(FileType.TECHNICAL_TYPE_IMG.getCode().equals(bo.getType())){
+                InputStream inputStream = new ByteArrayInputStream(bo.getFile().getBytes());
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                Thumbnails.of(inputStream).size(199,130).keepAspectRatio(false).toOutputStream(byteArrayOutputStream);
+                String url = QiNiuUtil.uploadImg(byteArrayOutputStream.toByteArray(),"technicalType");
                 bo.setReturnUrl(url);
             }
             if(bo.getReturnUrl()!=null){
